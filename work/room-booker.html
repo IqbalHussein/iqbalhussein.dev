@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Room Booker — Iqbal Hussein</title>
+<meta name="description" content="Books a Carleton library study room every night, on a fixed weekly schedule.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%239E1A1F'/><circle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+</header>
+
+<main class="project">
+  <div class="project-figure"><svg class="mark mark-large" viewBox="0 0 120 120" role="img" aria-label="Room Booker pictogram">
+      <rect x="10" y="18" width="100" height="84"/>
+      <line x1="10" y1="32" x2="110" y2="32"/>
+      <g class="thin">
+        <line x1="24.3" y1="32" x2="24.3" y2="102"/><line x1="38.6" y1="32" x2="38.6" y2="102"/>
+        <line x1="52.9" y1="32" x2="52.9" y2="102"/><line x1="67.1" y1="32" x2="67.1" y2="102"/>
+        <line x1="81.4" y1="32" x2="81.4" y2="102"/><line x1="95.7" y1="32" x2="95.7" y2="102"/>
+        <line x1="10" y1="49.5" x2="110" y2="49.5"/><line x1="10" y1="67" x2="110" y2="67"/>
+        <line x1="10" y1="84.5" x2="110" y2="84.5"/>
+      </g>
+      <rect class="s fill" x="10" y="32" width="14.3" height="17.5"/>
+      <rect class="s fill" x="38.6" y="32" width="14.3" height="17.5"/>
+      <rect class="s fill" x="52.9" y="67" width="14.3" height="17.5"/>
+      <rect class="s fill" x="67.1" y="67" width="14.3" height="17.5"/></svg></div>
+  <article class="project-text">
+    <h1>Room Booker</h1>
+    <p class="lede">Study rooms at Carleton&#x27;s library fill up fast. This service runs every night in Docker and books the same room seven days ahead. It reads slot times from the booking system&#x27;s own availability data instead of guessing from the page, and refuses to click if the two disagree.</p>
+    <div class="actions"><a class="ext" href="https://github.com/IqbalHussein/room-booking-system">Source on GitHub</a></div>
+    <dl class="facts">
+      <dt>Built with</dt><dd>Java, Spring Boot, Selenium, Docker</dd>
+      <dt>Status</dt><dd>Source code</dd>
+    </dl>
+    <h2>What it does</h2>
+    <ul class="points"><li>Every run ends as succeeded, skipped, unavailable or failed. A room that&#x27;s already taken isn&#x27;t a failure.</li><li>Failures name the step that broke and what the booker actually saw.</li><li>Slot matching and parsing are unit-tested against recorded responses, without a browser.</li></ul>
+  </article>
+  <nav class="pager" aria-label="More projects">
+    <a href="java-to-uml.html"><span>Previous</span>Java to UML</a>
+    <a href="pitchscanner.html"><span>Next</span>PitchScanner</a>
+  </nav>
+</main>
+<footer class="foot">
+  <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
+  <a href="https://github.com/IqbalHussein">GitHub</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mycelium — Iqbal Hussein</title>
+<meta name="description" content="A Chrome DevTools panel that draws your app&#x27;s network calls as a live sequence diagram.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%239E1A1F'/><circle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+</header>
+
+<main class="project">
+  <div class="project-figure"><svg class="mark mark-large" viewBox="0 0 120 120" role="img" aria-label="Mycelium pictogram">
+      <rect x="8" y="12" width="24" height="14"/>
+      <rect x="48" y="12" width="24" height="14"/>
+      <rect x="88" y="12" width="24" height="14"/>
+      <line x1="20" y1="26" x2="20" y2="110" class="dash"/>
+      <line x1="60" y1="26" x2="60" y2="110" class="dash"/>
+      <line x1="100" y1="26" x2="100" y2="110" class="dash"/>
+      <path d="M20 42 H58 M53 38 L58 42 L53 46"/>
+      <path class="s" d="M60 58 H98 M93 54 L98 58 L93 62"/>
+      <path d="M100 74 H62 M67 70 L62 74 L67 78"/>
+      <path d="M60 90 H22 M27 86 L22 90 L27 94"/></svg></div>
+  <article class="project-text">
+    <h1>Mycelium</h1>
+    <p class="lede">The Network tab lists requests in time order, which makes it hard to see which action set off which chain of API calls. Mycelium captures fetch and XHR traffic, drops static assets, and draws the flow between the browser and each service as a sequence diagram that updates as you use the page.</p>
+    <div class="actions"><a class="ext" href="https://github.com/IqbalHussein/mycelium">Source on GitHub</a></div>
+    <dl class="facts">
+      <dt>Built with</dt><dd>TypeScript, React, Mermaid, Chrome extension APIs</dd>
+      <dt>Status</dt><dd>Source code</dd>
+    </dl>
+    <h2>What it does</h2>
+    <ul class="points"><li>Click an arrow in the diagram to see that request&#x27;s headers and status.</li><li>Pause the diagram to study a complicated flow without it moving.</li><li>Updates are batched every 500 ms so the diagram doesn&#x27;t flicker.</li><li>Follows the DevTools light or dark theme.</li></ul>
+  </article>
+  <nav class="pager" aria-label="More projects">
+    <a href="protohybrid.html"><span>Previous</span>ProtoHybrid</a>
+    <a href="cvsyncai.html"><span>Next</span>CVSyncAI</a>
+  </nav>
+</main>
+<footer class="foot">
+  <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
+  <a href="https://github.com/IqbalHussein">GitHub</a>
+</footer>
+</body>
+</html>

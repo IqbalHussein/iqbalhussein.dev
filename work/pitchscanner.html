@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PitchScanner — Iqbal Hussein</title>
+<meta name="description" content="Sketch a football situation and find the real match moments that look most like it.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%239E1A1F'/><circle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+</header>
+
+<main class="project">
+  <div class="project-figure"><svg class="mark mark-large" viewBox="0 0 120 120" role="img" aria-label="PitchScanner pictogram">
+      <rect x="10" y="22" width="100" height="76"/>
+      <line x1="60" y1="22" x2="60" y2="98"/>
+      <circle cx="60" cy="60" r="10"/>
+      <rect x="90" y="40" width="20" height="40"/>
+      <circle class="dot" cx="74" cy="36" r="3.4"/>
+      <circle class="dot" cx="70" cy="76" r="3.4"/>
+      <circle class="dot" cx="78" cy="84" r="3.4"/>
+      <circle class="hollow" cx="100" cy="48" r="3.4"/>
+      <circle class="hollow" cx="88" cy="62" r="3.4"/>
+      <circle class="hollow" cx="100" cy="74" r="3.4"/>
+      <circle class="s fill" cx="76" cy="52" r="3.8"/></svg></div>
+  <article class="project-text">
+    <h1>PitchScanner</h1>
+    <p class="lede">Place the ball, the attackers and the defenders on a pitch, and PitchScanner searches StatsBomb&#x27;s open 360 data, about 1.3 million frames from 426 matches, for the closest real situations. Then it shows what those moments led to: how often they produced a shot, how much xG they were worth, how often possession was lost.</p>
+    <div class="actions"><a class="ext" href="https://pitchscanner.vercel.app">Open pitchscanner.vercel.app</a><a class="ext" href="https://github.com/IqbalHussein/pitchscanner">Source on GitHub</a></div>
+    <dl class="facts">
+      <dt>Built with</dt><dd>Python, FastAPI, Postgres with pgvector, React, TypeScript</dd>
+      <dt>Status</dt><dd>Live</dd>
+    </dl>
+    <h2>What it does</h2>
+    <ul class="points"><li>Every outcome comes with a confidence interval and the baseline for that part of the pitch, so a claim that a shape is dangerous can be checked.</li><li>Filters are written in plain language, like “Bayern at home, last fifteen minutes, trailing”. Rules parse them first; a model is only a fallback.</li><li>Situations are encoded three ways (grid, polar and tactical) and searched with pgvector.</li><li>The query path is built for a 150 ms p95.</li></ul>
+  </article>
+  <nav class="pager" aria-label="More projects">
+    <a href="room-booker.html"><span>Previous</span>Room Booker</a>
+    <a href="apricity.html"><span>Next</span>Apricity</a>
+  </nav>
+</main>
+<footer class="foot">
+  <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
+  <a href="https://github.com/IqbalHussein">GitHub</a>
+</footer>
+</body>
+</html>

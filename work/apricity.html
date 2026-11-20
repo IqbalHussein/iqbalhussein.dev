@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apricity — Iqbal Hussein</title>
+<meta name="description" content="Colour grading in the browser. Describe a look in words and see every adjustment it makes.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%239E1A1F'/><circle cx='16' cy='16' r='8' fill='none' stroke='white' stroke-width='3'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+</header>
+
+<main class="project">
+  <div class="project-figure"><svg class="mark mark-large" viewBox="0 0 120 120" role="img" aria-label="Apricity pictogram">
+      <circle cx="60" cy="60" r="46"/>
+      <line x1="14" y1="60" x2="106" y2="60"/>
+      <line x1="60" y1="14" x2="60" y2="106"/>
+      <circle cx="60" cy="60" r="23"/>
+      <g class="s fill">
+        <circle cx="72" cy="44" r="2.2"/><circle cx="78" cy="40" r="2.2"/>
+        <circle cx="68" cy="50" r="2.2"/><circle cx="82" cy="34" r="2.2"/>
+        <circle cx="75" cy="48" r="2.2"/><circle cx="64" cy="54" r="2.2"/>
+        <circle cx="86" cy="38" r="2.2"/><circle cx="70" cy="38" r="2.2"/>
+        <circle cx="79" cy="46" r="2.2"/><circle cx="62" cy="58" r="2.2"/>
+      </g></svg></div>
+  <article class="project-text">
+    <h1>Apricity</h1>
+    <p class="lede">Type a look such as “cold, desaturated noir” and an on-device agent turns it into explicit colour adjustments. Each change is listed with the reason for it and a link to the control, so you can take over by hand. Nothing is uploaded: rendering, the agent and storage all run in your browser.</p>
+    <div class="actions"><a class="ext" href="https://iqbalhussein.github.io/Apricity/">Open iqbalhussein.github.io/Apricity</a><a class="ext" href="https://github.com/IqbalHussein/Apricity">Source on GitHub</a></div>
+    <dl class="facts">
+      <dt>Built with</dt><dd>Rust, WebAssembly, WebGPU, Solid.js, TypeScript</dd>
+      <dt>Status</dt><dd>Live</dd>
+    </dl>
+    <h2>What it does</h2>
+    <ul class="points"><li>Two stages kept apart: correction (exposure, white balance, log camera profiles), then the grade.</li><li>Waveform, RGB parade and vectorscope.</li><li>Lift, gamma and gain wheels, eight-band HSL, curves, split tone, grain and LUTs.</li><li>Works offline as an installable app, and falls back to the CPU without WebGPU.</li></ul>
+  </article>
+  <nav class="pager" aria-label="More projects">
+    <a href="pitchscanner.html"><span>Previous</span>PitchScanner</a>
+    <a href="protohybrid.html"><span>Next</span>ProtoHybrid</a>
+  </nav>
+</main>
+<footer class="foot">
+  <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
+  <a href="https://github.com/IqbalHussein">GitHub</a>
+</footer>
+</body>
+</html>
