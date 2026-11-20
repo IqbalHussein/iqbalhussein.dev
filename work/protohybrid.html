@@ -11,8 +11,8 @@
 </head>
 <body>
 <header class="top">
-  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
-  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+  <a class="wordmark" href="../index.html">iqbal hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">work</a><a href="../about.html">about</a><a href="../contact.html">contact</a></nav>
 </header>
 
 <main class="project">
@@ -25,22 +25,31 @@
       <rect x="68" y="30" width="10" height="70" class="s"/>
       <rect x="82" y="80" width="10" height="20"/>
       <rect x="96" y="96" width="10" height="4" class="fill"/></svg></div>
-  <article class="project-text">
+  <header class="project-head">
     <h1>ProtoHybrid</h1>
     <p class="lede">Lifting apps and running apps don&#x27;t know about each other. ProtoHybrid puts runs and lifts on one weekly plan, shows each day&#x27;s load, and flags the clashes you set rules for, such as heavy legs within 24 hours of a hard run.</p>
     <div class="actions"><a class="ext" href="https://protohybrid.vercel.app">Open protohybrid.vercel.app</a><a class="ext" href="https://github.com/IqbalHussein/protohybrid">Source on GitHub</a></div>
+  </header>
+  <section class="project-body">
     <dl class="facts">
       <dt>Built with</dt><dd>Next.js, TypeScript, Supabase, Postgres</dd>
       <dt>Status</dt><dd>Live</dd>
     </dl>
     <h2>What it does</h2>
     <ul class="points"><li>Drag sessions to reschedule, and compare what was planned with what happened.</li><li>Log sets against an exercise library, with routines, a rest timer and personal records.</li><li>Pulls busy time from Google Calendar so training fits around everything else.</li><li>Sign in with a one-time email link.</li></ul>
-  </article>
+  </section>
   <nav class="pager" aria-label="More projects">
     <a href="apricity.html"><span>Previous</span>Apricity</a>
     <a href="mycelium.html"><span>Next</span>Mycelium</a>
   </nav>
 </main>
+<script>
+  // Videos play on their own unless the visitor prefers reduced motion; a click pauses or resumes.
+  document.querySelectorAll('.demo video').forEach(function (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+    v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+  });
+</script>
 <footer class="foot">
   <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
   <a href="https://github.com/IqbalHussein">GitHub</a>

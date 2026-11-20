@@ -11,8 +11,8 @@
 </head>
 <body>
 <header class="top">
-  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
-  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+  <a class="wordmark" href="../index.html">iqbal hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">work</a><a href="../about.html">about</a><a href="../contact.html">contact</a></nav>
 </header>
 
 <main class="project">
@@ -25,22 +25,36 @@
       <rect x="68" y="76" width="44" height="12" class="s fill"/>
       <path d="M30 76 V60 H90 V76 M60 60 V52"/>
       <path class="tri" d="M54 52 L60 44 L66 52 Z"/></svg></div>
-  <article class="project-text">
+  <header class="project-head">
     <h1>Java to UML</h1>
     <p class="lede">Upload .java files and the app parses them with an ANTLR grammar, works out visibility, abstract members, inheritance and composition, and draws the class diagram. Standard library types like ArrayList and HashMap are left out, so the diagram shows only your code.</p>
     <div class="actions"><a class="ext" href="https://github.com/IqbalHussein/UML-generator">Source on GitHub</a></div>
+  </header>
+  <figure class="demo">
+    <video src="../media/java-to-uml.mp4" poster="../media/java-to-uml.jpg" autoplay muted loop playsinline
+      preload="metadata" aria-label="Demo of Java to UML: Choosing six Java files, generating the class diagram, then zooming and panning around it."></video>
+    <figcaption>Choosing six Java files, generating the class diagram, then zooming and panning around it.</figcaption>
+  </figure>
+  <section class="project-body">
     <dl class="facts">
       <dt>Built with</dt><dd>Next.js, TypeScript, ANTLR4, Mermaid</dd>
       <dt>Status</dt><dd>Source code</dd>
     </dl>
     <h2>What it does</h2>
     <ul class="points"><li>Upload several files at once by dragging them in.</li><li>Pan and zoom around large diagrams.</li><li>Export as SVG or as a high-resolution PNG.</li></ul>
-  </article>
+  </section>
   <nav class="pager" aria-label="More projects">
     <a href="cvsyncai.html"><span>Previous</span>CVSyncAI</a>
     <a href="room-booker.html"><span>Next</span>Room Booker</a>
   </nav>
 </main>
+<script>
+  // Videos play on their own unless the visitor prefers reduced motion; a click pauses or resumes.
+  document.querySelectorAll('.demo video').forEach(function (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+    v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+  });
+</script>
 <footer class="foot">
   <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
   <a href="https://github.com/IqbalHussein">GitHub</a>

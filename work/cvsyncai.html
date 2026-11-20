@@ -11,8 +11,8 @@
 </head>
 <body>
 <header class="top">
-  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
-  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+  <a class="wordmark" href="../index.html">iqbal hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">work</a><a href="../about.html">about</a><a href="../contact.html">contact</a></nav>
 </header>
 
 <main class="project">
@@ -20,22 +20,31 @@
       <circle cx="46" cy="60" r="32"/>
       <circle cx="74" cy="60" r="32"/>
       <path class="s fill" d="M60 31.2 A32 32 0 0 1 60 88.8 A32 32 0 0 1 60 31.2 Z"/></svg></div>
-  <article class="project-text">
+  <header class="project-head">
     <h1>CVSyncAI</h1>
     <p class="lede">CVSyncAI pulls the skills out of job postings, from a vocabulary of about 250 across software, finance, healthcare, law and more, and ranks the postings against a resume. The score blends skill overlap with semantic similarity; the weighting was tuned on a hand-labelled benchmark against keyword, TF-IDF and embedding-only baselines.</p>
     <div class="actions"><a class="ext" href="https://github.com/IqbalHussein/cv-sync-ai">Source on GitHub</a></div>
+  </header>
+  <section class="project-body">
     <dl class="facts">
       <dt>Built with</dt><dd>Python, spaCy, sentence-transformers, scikit-learn, Streamlit</dd>
       <dt>Status</dt><dd>Source code</dd>
     </dl>
     <h2>What it does</h2>
     <ul class="points"><li>Shows matched and missing skills, with the line of the posting that mentions each one.</li><li>Suggests resources for the missing skills.</li><li>Drafts a cover letter for a chosen posting and exports it as a PDF.</li><li>Runs from the command line or as a Streamlit web app.</li></ul>
-  </article>
+  </section>
   <nav class="pager" aria-label="More projects">
     <a href="mycelium.html"><span>Previous</span>Mycelium</a>
     <a href="java-to-uml.html"><span>Next</span>Java to UML</a>
   </nav>
 </main>
+<script>
+  // Videos play on their own unless the visitor prefers reduced motion; a click pauses or resumes.
+  document.querySelectorAll('.demo video').forEach(function (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+    v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+  });
+</script>
 <footer class="foot">
   <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
   <a href="https://github.com/IqbalHussein">GitHub</a>

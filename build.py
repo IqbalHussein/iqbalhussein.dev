@@ -110,6 +110,7 @@ PROJECTS = [
         ],
         stack="Python, FastAPI, Postgres with pgvector, React, TypeScript",
         live="https://pitchscanner.vercel.app",
+        demo="Moving a player and the ball, opening a real match on the pitch, and filtering in plain language.",
         repo="https://github.com/IqbalHussein/pitchscanner",
     ),
     dict(
@@ -127,6 +128,7 @@ PROJECTS = [
         ],
         stack="Rust, WebAssembly, WebGPU, Solid.js, TypeScript",
         live="https://iqbalhussein.github.io/Apricity/",
+        demo="Describing a look in words, reading why each change was made, then adjusting saturation by hand and checking the scopes.",
         repo="https://github.com/IqbalHussein/Apricity",
     ),
     dict(
@@ -191,6 +193,7 @@ PROJECTS = [
             "Export as SVG or as a high-resolution PNG.",
         ],
         stack="Next.js, TypeScript, ANTLR4, Mermaid",
+        demo="Choosing six Java files, generating the class diagram, then zooming and panning around it.",
         live=None,
         repo="https://github.com/IqbalHussein/UML-generator",
     ),
@@ -237,7 +240,7 @@ def page(title, body, prefix="", current=None, description=None, home=False):
     nav = []
     for label, href in (("Work", "work.html"), ("About", "about.html"), ("Contact", "contact.html")):
         cur = ' aria-current="page"' if current == label else ""
-        nav.append(f'<a href="{prefix}{href}"{cur}>{label}</a>')
+        nav.append(f'<a href="{prefix}{href}"{cur}>{label.lower()}</a>')
     desc = escape(description or f"{NAME} builds software. Selected projects, with live sites and source code.")
     return f"""<!doctype html>
 <html lang="en">
@@ -252,7 +255,7 @@ def page(title, body, prefix="", current=None, description=None, home=False):
 </head>
 <body{' class="is-home"' if home else ''}>
 <header class="top">
-  {'<span></span>' if home else f'<a class="wordmark" href="{prefix}index.html">{NAME}</a>'}
+  {'<span></span>' if home else f'<a class="wordmark" href="{prefix}index.html">{NAME.lower()}</a>'}
   <nav aria-label="Main">{''.join(nav)}</nav>
 </header>
 {body}
@@ -300,7 +303,7 @@ def build_work():
     </li>""")
     body = f"""
 <main class="work-page">
-  <h1>Work</h1>
+  <h1>work</h1>
   <ol class="index" aria-label="Projects">{''.join(rows)}
   </ol>
 </main>"""
@@ -313,25 +316,42 @@ def build_project(i):
     next_p = PROJECTS[(i + 1) % len(PROJECTS)]
     points = "".join(f"<li>{escape(x)}</li>" for x in p["points"])
     status = "Live" if p["live"] else "Source code"
+    demo = ""
+    if p.get("demo"):
+        demo = f"""
+  <figure class="demo">
+    <video src="../media/{p['slug']}.mp4" poster="../media/{p['slug']}.jpg" autoplay muted loop playsinline
+      preload="metadata" aria-label="Demo of {escape(p['title'])}: {escape(p['demo'])}"></video>
+    <figcaption>{escape(p['demo'])}</figcaption>
+  </figure>"""
     body = f"""
 <main class="project">
   <div class="project-figure">{mark(p['mark'], 'mark mark-large', label=p['title'] + ' pictogram')}</div>
-  <article class="project-text">
+  <header class="project-head">
     <h1>{escape(p['title'])}</h1>
     <p class="lede">{escape(p['lede'])}</p>
     <div class="actions">{links(p)}</div>
+  </header>{demo}
+  <section class="project-body">
     <dl class="facts">
       <dt>Built with</dt><dd>{escape(p['stack'])}</dd>
       <dt>Status</dt><dd>{status}</dd>
     </dl>
     <h2>What it does</h2>
     <ul class="points">{points}</ul>
-  </article>
+  </section>
   <nav class="pager" aria-label="More projects">
     <a href="{prev_p['slug']}.html"><span>Previous</span>{escape(prev_p['title'])}</a>
     <a href="{next_p['slug']}.html"><span>Next</span>{escape(next_p['title'])}</a>
   </nav>
-</main>"""
+</main>
+<script>
+  // Videos play on their own unless the visitor prefers reduced motion; a click pauses or resumes.
+  document.querySelectorAll('.demo video').forEach(function (v) {{
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {{ v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }}
+    v.addEventListener('click', function () {{ v.paused ? v.play() : v.pause(); }});
+  }});
+</script>"""
     return page(f"{p['title']} — {NAME}", body, prefix="../", current="Work", description=p["short"])
 
 
@@ -339,7 +359,7 @@ def build_about():
     langs = "Python, TypeScript, Rust, Java"
     body = f"""
 <main class="prose-page">
-  <h1>About</h1>
+  <h1>about</h1>
   <div class="prose">
     <p class="lede">I'm a developer who likes problems where the interesting part is hidden: the shape of a
     football attack, the load of a training week, the chain of requests behind one click.</p>
@@ -362,7 +382,7 @@ def build_about():
 def build_contact():
     body = f"""
 <main class="prose-page">
-  <h1>Contact</h1>
+  <h1>contact</h1>
   <div class="prose">
     <p class="lede">Email is the best way to reach me.</p>
     <p class="big-link"><a href="mailto:{EMAIL}">{EMAIL.replace("@", "<wbr>@")}</a></p>

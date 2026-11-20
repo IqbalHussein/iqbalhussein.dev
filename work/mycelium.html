@@ -11,8 +11,8 @@
 </head>
 <body>
 <header class="top">
-  <a class="wordmark" href="../index.html">Iqbal Hussein</a>
-  <nav aria-label="Main"><a href="../work.html" aria-current="page">Work</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></nav>
+  <a class="wordmark" href="../index.html">iqbal hussein</a>
+  <nav aria-label="Main"><a href="../work.html" aria-current="page">work</a><a href="../about.html">about</a><a href="../contact.html">contact</a></nav>
 </header>
 
 <main class="project">
@@ -27,22 +27,31 @@
       <path class="s" d="M60 58 H98 M93 54 L98 58 L93 62"/>
       <path d="M100 74 H62 M67 70 L62 74 L67 78"/>
       <path d="M60 90 H22 M27 86 L22 90 L27 94"/></svg></div>
-  <article class="project-text">
+  <header class="project-head">
     <h1>Mycelium</h1>
     <p class="lede">The Network tab lists requests in time order, which makes it hard to see which action set off which chain of API calls. Mycelium captures fetch and XHR traffic, drops static assets, and draws the flow between the browser and each service as a sequence diagram that updates as you use the page.</p>
     <div class="actions"><a class="ext" href="https://github.com/IqbalHussein/mycelium">Source on GitHub</a></div>
+  </header>
+  <section class="project-body">
     <dl class="facts">
       <dt>Built with</dt><dd>TypeScript, React, Mermaid, Chrome extension APIs</dd>
       <dt>Status</dt><dd>Source code</dd>
     </dl>
     <h2>What it does</h2>
     <ul class="points"><li>Click an arrow in the diagram to see that request&#x27;s headers and status.</li><li>Pause the diagram to study a complicated flow without it moving.</li><li>Updates are batched every 500 ms so the diagram doesn&#x27;t flicker.</li><li>Follows the DevTools light or dark theme.</li></ul>
-  </article>
+  </section>
   <nav class="pager" aria-label="More projects">
     <a href="protohybrid.html"><span>Previous</span>ProtoHybrid</a>
     <a href="cvsyncai.html"><span>Next</span>CVSyncAI</a>
   </nav>
 </main>
+<script>
+  // Videos play on their own unless the visitor prefers reduced motion; a click pauses or resumes.
+  document.querySelectorAll('.demo video').forEach(function (v) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; return; }
+    v.addEventListener('click', function () { v.paused ? v.play() : v.pause(); });
+  });
+</script>
 <footer class="foot">
   <a href="mailto:iqbalabdishakur15@gmail.com">iqbalabdishakur15@gmail.com</a>
   <a href="https://github.com/IqbalHussein">GitHub</a>
