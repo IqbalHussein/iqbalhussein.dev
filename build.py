@@ -276,16 +276,56 @@ def links(p):
     return "".join(out)
 
 
+# Glare on the home page name: follows the cursor with a little lag. On touch
+# screens it drifts slowly on its own; with reduced motion it stays put.
+GLARE_JS = """
+<script>
+(function () {
+  var el = document.querySelector('.home-name');
+  if (!el) return;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var noHover = matchMedia('(hover: none)').matches;
+  var r = el.getBoundingClientRect();
+  var cx = r.width * 0.28, cy = r.height * 0.3, tx = cx, ty = cy, raf = 0;
+  function set() { el.style.setProperty('--gx', cx + 'px'); el.style.setProperty('--gy', cy + 'px'); }
+  function step() {
+    cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; set();
+    raf = (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5) ? requestAnimationFrame(step) : 0;
+  }
+  function aim(x, y) {
+    r = el.getBoundingClientRect(); tx = x - r.left; ty = y - r.top;
+    if (reduce) { cx = tx; cy = ty; set(); } else if (!raf) raf = requestAnimationFrame(step);
+  }
+  set();
+  addEventListener('pointermove', function (e) { aim(e.clientX, e.clientY); }, { passive: true });
+  if (noHover && !reduce) {
+    var t0 = performance.now();
+    (function drift(t) {
+      var k = (t - t0) / 1000, b = el.getBoundingClientRect();
+      cx = b.width * (0.5 + 0.38 * Math.sin(k * 0.45)); cy = b.height * (0.5 + 0.32 * Math.sin(k * 0.31 + 1));
+      set(); requestAnimationFrame(drift);
+    })(t0);
+  }
+})();
+</script>"""
+
+
 def build_index():
     first, last = NAME.split(" ", 1)
+    name_html = f"{escape(first.lower())}<br>{escape(last.lower())}"
     body = f"""
 <main class="home">
-  <h1 class="home-name">{escape(first.lower())}<br>{escape(last.lower())}</h1>
+  <h1 class="home-name">
+    <span class="fx bloom" aria-hidden="true">{name_html}</span>
+    <span class="nm">{name_html}</span>
+    <span class="fx glare" aria-hidden="true">{name_html}</span>
+  </h1>
   <div class="home-actions">
     <a class="btn btn-solid" href="mailto:{EMAIL}">Email me</a>
     <a class="btn" href="{GITHUB}">GitHub</a>
   </div>
 </main>"""
+    body += GLARE_JS
     return page(NAME, body, home=True)
 
 
