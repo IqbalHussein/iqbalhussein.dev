@@ -361,14 +361,8 @@ def build_about():
 <main class="prose-page">
   <h1>about</h1>
   <div class="prose">
-    <p class="lede">I'm a developer who likes problems where the interesting part is hidden: the shape of a
-    football attack, the load of a training week, the chain of requests behind one click.</p>
-    <p>Most of what I build tries to make that hidden part visible and checkable. PitchScanner puts a
-    confidence interval on every number. Apricity lists every adjustment its agent makes and why.
-    Room Booker reports exactly which step failed and what it saw. I'd rather a tool admit what it
-    doesn't know than look certain.</p>
-    <p>I work across the stack, from data pipelines and search to interfaces, and I like writing the
-    benchmark before trusting the result.</p>
+    <p class="lede">Software Engineer. I love turning my problems into checkable and well designed solutions.</p>
+    <p>In my free time I like to read, exercise, and learn.</p>
     <dl class="facts">
       <dt>Languages</dt><dd>{langs}</dd>
       <dt>Frameworks</dt><dd>FastAPI, Next.js, React, Solid.js, Spring Boot</dd>
