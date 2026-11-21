@@ -5,10 +5,10 @@
   --rule: #161514;
   --faint: #D4D1CB;
   --signal: #9E1A1F;
-  --glare-core: rgba(255, 255, 255, .7);
-  --glare-mid: rgba(150, 180, 235, .2);
+  --glare-core: rgba(255, 255, 255, .5);
+  --glare-mid: rgba(160, 185, 235, .22);
   --bloom: rgba(150, 180, 235, .2);
-  --glare-base: rgba(150, 180, 235, .06);
+  --glare-base: rgba(160, 185, 235, 0);
   --edge: clamp(16px, 4vw, 56px);
   --gap: clamp(12px, 2vw, 28px);
 }
@@ -16,7 +16,7 @@
   :root {
     --paper: #121110; --ink: #EDEBE6; --grey: #9A968F; --rule: #EDEBE6;
     --faint: #34312E; --signal: #D9453F;
-    --glare-core: #FFFFFF; --glare-mid: rgba(215, 230, 255, .35); --bloom: rgba(160, 196, 255, .85); --glare-base: rgba(215, 230, 255, .25);
+    --glare-core: #FFFFFF; --glare-mid: rgba(220, 232, 255, .45); --bloom: rgba(160, 196, 255, .8); --glare-base: rgba(220, 232, 255, .05);
   }
 }
 
@@ -74,28 +74,23 @@ ul, ol { list-style: none; }
   font-size: clamp(48px, min(23vw, calc((100svh - 250px) / 1.95)), 440px); line-height: .9; letter-spacing: -0.055em;
   margin-left: -0.06em;
 }
-/* Screen glare on the name. --ga is the angle of the line from the light (cursor) through the
-   centre of the name; the glare band runs along it and is brightest near the light. */
+/* Screen glare on the name. The cursor acts as a light: --ga is the angle from the centre of the
+   name to it. Light falls smoothly across the whole name, strongest on the side facing the cursor,
+   with a soft hotspot near it and a glow around the letters. No hard edges anywhere. */
 .home-name .nm { position: relative; z-index: 1; }
 .home-name .fx { position: absolute; inset: 0; pointer-events: none; user-select: none; }
 .home-name .glare {
   z-index: 2; color: transparent;
-  /* Parallel streaks across the whole name, angled along the line from the light. Two periods
-     overlap so the spacing looks irregular, and they slide a little as the light moves. */
   background:
-    repeating-linear-gradient(var(--ga, -30deg), transparent 0, var(--glare-mid) .16em, var(--glare-core) .22em, var(--glare-mid) .28em, transparent .5em, transparent .83em),
-    repeating-linear-gradient(var(--ga, -30deg), transparent 0, var(--glare-mid) .05em, transparent .14em, transparent .37em),
-    linear-gradient(var(--glare-base), var(--glare-base));
-  background-position: calc(var(--gx, 0px) * -.08) calc(var(--gy, 0px) * -.08);
+    radial-gradient(circle 2.2em at var(--gx, 100%) var(--gy, 0%), var(--glare-core) 0%, var(--glare-mid) 45%, transparent 100%),
+    linear-gradient(calc(var(--ga, -30deg) + 90deg), var(--glare-base) 0%, var(--glare-mid) 100%);
   -webkit-background-clip: text; background-clip: text;
-  -webkit-mask-image: radial-gradient(circle 4em at var(--gx, 100%) var(--gy, 0%), #000 0%, rgba(0, 0, 0, .55) 100%);
-  mask-image: radial-gradient(circle 4em at var(--gx, 100%) var(--gy, 0%), #000 0%, rgba(0, 0, 0, .55) 100%);
 }
 .home-name .bloom {
-  z-index: 0; color: var(--bloom); filter: blur(0.08em);
+  z-index: 0; color: var(--bloom); filter: blur(0.1em);
   inset: -.4em; padding: .4em; /* room for the glow so it isn't cut off at the edges */
-  -webkit-mask-image: repeating-linear-gradient(var(--ga, -30deg), rgba(0, 0, 0, .45) 0, #000 .22em, rgba(0, 0, 0, .45) .5em, rgba(0, 0, 0, .3) .83em);
-  mask-image: repeating-linear-gradient(var(--ga, -30deg), rgba(0, 0, 0, .45) 0, #000 .22em, rgba(0, 0, 0, .45) .5em, rgba(0, 0, 0, .3) .83em);
+  -webkit-mask-image: linear-gradient(calc(var(--ga, -30deg) + 90deg), rgba(0, 0, 0, .35) 0%, #000 100%);
+  mask-image: linear-gradient(calc(var(--ga, -30deg) + 90deg), rgba(0, 0, 0, .35) 0%, #000 100%);
 }
 .is-home .home { -webkit-tap-highlight-color: transparent; }
 .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vw, 56px); }
