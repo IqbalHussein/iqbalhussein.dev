@@ -276,20 +276,27 @@ def links(p):
     return "".join(out)
 
 
-# Glare on the home page name: follows the cursor with a little lag. On touch
-# screens it drifts slowly on its own; with reduced motion it stays put.
+# Glare on the home page name. The cursor (or a finger on touch screens) acts as a
+# light source: a glare band runs along the line from it through the centre of
+# the name, brightest on the side nearest the light.
 GLARE_JS = """
 <script>
 (function () {
   var el = document.querySelector('.home-name');
   if (!el) return;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var noHover = matchMedia('(hover: none)').matches;
   var r = el.getBoundingClientRect();
-  var cx = r.width * 0.28, cy = r.height * 0.3, tx = cx, ty = cy, raf = 0;
-  function set() { el.style.setProperty('--gx', cx + 'px'); el.style.setProperty('--gy', cy + 'px'); }
+  // Resting light position, relative to the name: up and to the right.
+  function rest() { r = el.getBoundingClientRect(); return [r.width * 1.05, -r.height * 0.55]; }
+  var p = rest(), cx = p[0], cy = p[1], tx = cx, ty = cy, raf = 0;
+  function set() {
+    var a = Math.atan2(cy - r.height / 2, cx - r.width / 2) * 180 / Math.PI;
+    el.style.setProperty('--ga', a.toFixed(2) + 'deg');
+    el.style.setProperty('--gx', cx.toFixed(1) + 'px');
+    el.style.setProperty('--gy', cy.toFixed(1) + 'px');
+  }
   function step() {
-    cx += (tx - cx) * 0.14; cy += (ty - cy) * 0.14; set();
+    cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12; set();
     raf = (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5) ? requestAnimationFrame(step) : 0;
   }
   function aim(x, y) {
@@ -297,15 +304,11 @@ GLARE_JS = """
     if (reduce) { cx = tx; cy = ty; set(); } else if (!raf) raf = requestAnimationFrame(step);
   }
   set();
-  addEventListener('pointermove', function (e) { aim(e.clientX, e.clientY); }, { passive: true });
-  if (noHover && !reduce) {
-    var t0 = performance.now();
-    (function drift(t) {
-      var k = (t - t0) / 1000, b = el.getBoundingClientRect();
-      cx = b.width * (0.5 + 0.38 * Math.sin(k * 0.45)); cy = b.height * (0.5 + 0.32 * Math.sin(k * 0.31 + 1));
-      set(); requestAnimationFrame(drift);
-    })(t0);
-  }
+  addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') aim(e.clientX, e.clientY); }, { passive: true });
+  function touch(e) { var t = e.touches[0]; if (t) aim(t.clientX, t.clientY); }
+  addEventListener('touchstart', touch, { passive: true });
+  addEventListener('touchmove', touch, { passive: true });
+  addEventListener('resize', function () { var q = rest(); tx = q[0]; ty = q[1]; cx = tx; cy = ty; set(); });
 })();
 </script>"""
 

@@ -15,7 +15,7 @@
   :root {
     --paper: #121110; --ink: #EDEBE6; --grey: #9A968F; --rule: #EDEBE6;
     --faint: #34312E; --signal: #D9453F;
-    --glare-core: #FFFFFF; --glare-mid: rgba(215, 230, 255, .55); --bloom: rgba(150, 190, 255, .7);
+    --glare-core: #FFFFFF; --glare-mid: rgba(215, 230, 255, .55); --bloom: rgba(160, 196, 255, .9);
   }
 }
 
@@ -73,20 +73,25 @@ ul, ol { list-style: none; }
   font-size: clamp(48px, min(23vw, calc((100svh - 250px) / 1.95)), 440px); line-height: .9; letter-spacing: -0.055em;
   margin-left: -0.06em;
 }
-/* Screen glare on the name: a sheen clipped to the letters, plus a soft bloom around them. */
+/* Screen glare on the name. --ga is the angle of the line from the light (cursor) through the
+   centre of the name; the glare band runs along it and is brightest near the light. */
 .home-name .nm { position: relative; z-index: 1; }
 .home-name .fx { position: absolute; inset: 0; pointer-events: none; user-select: none; }
 .home-name .glare {
   z-index: 2; color: transparent;
-  background: radial-gradient(circle 0.8em at var(--gx, 30%) var(--gy, 30%),
-    var(--glare-core) 0%, var(--glare-mid) 32%, transparent 85%);
+  background:
+    linear-gradient(var(--ga, -30deg), transparent 39%, var(--glare-mid) 46%, var(--glare-core) 50%, var(--glare-mid) 54%, transparent 61%),
+    linear-gradient(var(--ga, -30deg), transparent 62%, var(--glare-mid) 64.5%, transparent 67%);
   -webkit-background-clip: text; background-clip: text;
+  -webkit-mask-image: radial-gradient(circle 3em at var(--gx, 100%) var(--gy, 0%), #000 0%, rgba(0, 0, 0, .45) 100%);
+  mask-image: radial-gradient(circle 3em at var(--gx, 100%) var(--gy, 0%), #000 0%, rgba(0, 0, 0, .45) 100%);
 }
 .home-name .bloom {
   z-index: 0; color: var(--bloom); filter: blur(0.07em);
-  -webkit-mask-image: radial-gradient(circle 1em at var(--gx, 30%) var(--gy, 30%), #000 0%, transparent 100%);
-  mask-image: radial-gradient(circle 1em at var(--gx, 30%) var(--gy, 30%), #000 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(var(--ga, -30deg), transparent 36%, #000 50%, transparent 64%);
+  mask-image: linear-gradient(var(--ga, -30deg), transparent 36%, #000 50%, transparent 64%);
 }
+.is-home .home { -webkit-tap-highlight-color: transparent; }
 .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vw, 56px); }
 .btn {
   border: 2px solid var(--ink); padding: 12px 22px; font-weight: 600; font-size: 17px;
