@@ -276,59 +276,16 @@ def links(p):
     return "".join(out)
 
 
-# Glare on the home page name. The cursor (or a finger on touch screens) acts as a
-# light source: a glare band runs along the line from it through the centre of
-# the name, brightest on the side nearest the light.
-GLARE_JS = """
-<script>
-(function () {
-  var el = document.querySelector('.home-name');
-  if (!el) return;
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var r = el.getBoundingClientRect();
-  // Resting light position, relative to the name: up and to the right.
-  function rest() { r = el.getBoundingClientRect(); return [r.width * 1.05, -r.height * 0.55]; }
-  var p = rest(), cx = p[0], cy = p[1], tx = cx, ty = cy, raf = 0;
-  function set() {
-    var a = Math.atan2(cy - r.height / 2, cx - r.width / 2) * 180 / Math.PI;
-    el.style.setProperty('--ga', a.toFixed(2) + 'deg');
-    el.style.setProperty('--gx', cx.toFixed(1) + 'px');
-    el.style.setProperty('--gy', cy.toFixed(1) + 'px');
-  }
-  function step() {
-    cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12; set();
-    raf = (Math.abs(tx - cx) + Math.abs(ty - cy) > 0.5) ? requestAnimationFrame(step) : 0;
-  }
-  function aim(x, y) {
-    r = el.getBoundingClientRect(); tx = x - r.left; ty = y - r.top;
-    if (reduce) { cx = tx; cy = ty; set(); } else if (!raf) raf = requestAnimationFrame(step);
-  }
-  set();
-  addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') aim(e.clientX, e.clientY); }, { passive: true });
-  function touch(e) { var t = e.touches[0]; if (t) aim(t.clientX, t.clientY); }
-  addEventListener('touchstart', touch, { passive: true });
-  addEventListener('touchmove', touch, { passive: true });
-  addEventListener('resize', function () { var q = rest(); tx = q[0]; ty = q[1]; cx = tx; cy = ty; set(); });
-})();
-</script>"""
-
-
 def build_index():
     first, last = NAME.split(" ", 1)
-    name_html = f"{escape(first.lower())}<br>{escape(last.lower())}"
     body = f"""
 <main class="home">
-  <h1 class="home-name">
-    <span class="fx bloom" aria-hidden="true">{name_html}</span>
-    <span class="nm">{name_html}</span>
-    <span class="fx glare" aria-hidden="true">{name_html}</span>
-  </h1>
+  <h1 class="home-name">{escape(first.lower())}<br>{escape(last.lower())}</h1>
   <div class="home-actions">
     <a class="btn btn-solid" href="mailto:{EMAIL}">Email me</a>
     <a class="btn" href="{GITHUB}">GitHub</a>
   </div>
 </main>"""
-    body += GLARE_JS
     return page(NAME, body, home=True)
 
 
