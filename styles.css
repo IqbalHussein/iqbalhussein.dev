@@ -68,6 +68,12 @@ ul, ol { list-style: none; }
   font-size: clamp(48px, min(23vw, calc((100svh - 250px) / 1.95)), 440px); line-height: .9; letter-spacing: -0.055em;
   margin-left: -0.06em;
 }
+/* Touch screens: mobile browsers (notably iOS Safari's floating address bar) draw toolbars over
+   the bottom of the page, so keep the name and buttons clear of that area. */
+@media (pointer: coarse) {
+  .home { padding-bottom: calc(var(--edge) + 96px + env(safe-area-inset-bottom)); }
+  .home-name { font-size: clamp(48px, min(23vw, calc((100svh - 346px) / 1.95)), 440px); }
+}
 .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vw, 56px); }
 .btn {
   border: 2px solid var(--ink); padding: 12px 22px; font-weight: 600; font-size: 17px;
