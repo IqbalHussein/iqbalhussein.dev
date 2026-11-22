@@ -60,19 +60,13 @@ ul, ol { list-style: none; }
 /* ---------- Home ---------- */
 .is-home { min-height: 100svh; display: flex; flex-direction: column; }
 .home {
-  flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
+  flex: 1; display: flex; flex-direction: column; justify-content: flex-end; overflow: clip;
   padding: 48px var(--edge) var(--edge);
 }
 .home-name {
   font-weight: 600;
   font-size: clamp(48px, min(23vw, calc((100svh - 250px) / 1.95)), 440px); line-height: .9; letter-spacing: -0.055em;
   margin-left: -0.06em;
-}
-/* Touch screens: mobile browsers (notably iOS Safari's floating address bar) draw toolbars over
-   the bottom of the page, so keep the name and buttons clear of that area. */
-@media (pointer: coarse) {
-  .home { padding-bottom: calc(var(--edge) + 96px + env(safe-area-inset-bottom)); }
-  .home-name { font-size: clamp(48px, min(23vw, calc((100svh - 346px) / 1.95)), 440px); }
 }
 .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 4vw, 56px); }
 .btn {
